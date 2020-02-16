@@ -17,7 +17,8 @@ set(name_library                filesystem)
 
 set(name_executable             executable.elf)
 
-set(dependency                  family_c5)
+set(dependency_common           family_c5)
+set(dependency_host             )
 set(dependency_scope            PUBLIC)
 
 # ---------------------------------------------| target |--------------------------------------------- #
