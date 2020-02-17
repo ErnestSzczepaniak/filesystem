@@ -17,8 +17,8 @@ set(name_library                filesystem)
 
 set(name_executable             executable.elf)
 
-set(dependency_internal_common  )
-set(dependency_internal_target  family_c5)
+set(dependency_internal_common  family_c5)
+set(dependency_internal_target  )
 set(dependency_internal_host    )
 
 set(dependency_external_common  )

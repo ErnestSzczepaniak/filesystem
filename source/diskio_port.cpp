@@ -3,7 +3,7 @@
 
 //---------------------------------------------| RAM |---------------------------------------------//
 
-unsigned char memory[4096][512];
+unsigned char port_memory[4096][512];
 
 DWORD get_fattime()
 {
@@ -24,7 +24,7 @@ DRESULT RAM_disk_read(unsigned char * buffer, int sector, int count)
 {
     for (int i = 0; i < count; i++)
     {
-        memcpy(buffer, &memory[sector + i][0], 512);
+        memcpy(buffer, &port_memory[sector + i][0], 512);
         buffer += 512;       
     }
 
@@ -35,7 +35,7 @@ DRESULT RAM_disk_write(const unsigned char * buffer, int sector, int count)
 {
     for (int i = 0; i < count; i++)
     {
-        memcpy(&memory[sector + i][0], buffer, 512);
+        memcpy(&port_memory[sector + i][0], buffer, 512);
         buffer += 512;
     }
 
