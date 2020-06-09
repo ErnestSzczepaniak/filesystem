@@ -1,6 +1,6 @@
 #include "filesystem.h"
 
-Result f_open(File * file, const char * path)
+Filesystem_result f_open(File * file, const char * path)
 {
 #ifdef build_platform_host
     file->open(path, std::ios::in | std::ios::out | std::ios::binary | std::ios::trunc);
@@ -10,7 +10,7 @@ Result f_open(File * file, const char * path)
 #endif
 }
 
-Result f_close(File * file)
+Filesystem_result f_close(File * file)
 {
 #ifdef build_platform_host
     file->close();
@@ -42,7 +42,7 @@ int f_write(File * file, void * buffer, int size)
 #endif
 }
 
-Result f_seek(File * file, int offset)
+Filesystem_result f_seek(File * file, int offset)
 {
 #ifdef build_platform_host
 
@@ -69,7 +69,7 @@ int f_size(File * file)
 #endif
 }
 
-Result f_mkdir(const char * path)
+Filesystem_result f_mkdir(const char * path)
 {
 #ifdef build_platform_host
 
@@ -78,7 +78,7 @@ Result f_mkdir(const char * path)
 #endif
 }
 
-Result f_rmdir(const char * path)
+Filesystem_result f_rmdir(const char * path)
 {
 #ifdef build_platform_host
 
@@ -87,7 +87,7 @@ Result f_rmdir(const char * path)
 #endif
 }
 
-Result f_mkfs(const char * path, void * buffer, int size)
+Filesystem_result f_mkfs(const char * path, void * buffer, int size)
 {
 #ifdef build_platform_host
 
@@ -96,7 +96,7 @@ Result f_mkfs(const char * path, void * buffer, int size)
 #endif
 }
 
-Result f_mount(Filesystem * filesystem, const char * path)
+Filesystem_result f_mount(Filesystem * filesystem, const char * path)
 {
 #ifdef build_platform_host
 
