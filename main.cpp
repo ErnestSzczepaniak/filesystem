@@ -10,10 +10,21 @@
 #include "filesystem.h"
 #include "hal.h"
 
-unsigned char buffer[7007204];
+// #define rbf_size 7007204
+#define rbf_size 2159408
+
+unsigned char buffer_sd[rbf_size];
+unsigned char buffer_qspi[rbf_size];
 
 int main()
 {
+    while(1);
+
+    auto res_qspi = h_qspi_init();
+
+    res_qspi = h_qspi_read(0x00940000, rbf_size, buffer_qspi);
+    
+
     Filesystem filesystem;
     File file;
 
@@ -21,11 +32,17 @@ int main()
 
     res = f_open(&file, "1:/output_file.rbf");
 
-    auto size = f_read(&file, buffer, 7007204);
+    auto size = f_read(&file, buffer_sd, rbf_size);
 
-    h_fpga_bridge_init(3);
 
-    h_fpga_configure(buffer, 7007204);
+    auto res_cmp = memcmp(buffer_qspi, buffer_sd, rbf_size);
+
+    auto res_config  = h_fpga_configure(buffer_qspi, rbf_size);
+
+    auto res_init = h_fpga_init();
+
+    // h_fpga_bridge_init(3);
+
 
     while(1);
 }
